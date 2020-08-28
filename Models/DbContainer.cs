@@ -21,7 +21,6 @@ namespace BlackEyesMvc.Models
         public DbSet<ProductBrand> productBrands { get; set; }
         public DbSet<Order> orders { get; set; }
         public DbSet<Category> categories { get; set; }
-        public DbSet<User> users { get; set; }
         public DbSet<Login> logins { get; set; }
         public DbSet<Register> register { get; set; }
     }
