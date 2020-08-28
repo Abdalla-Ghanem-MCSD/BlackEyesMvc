@@ -264,7 +264,6 @@
     <Compile Include="Models\ProductUnit.cs" />
     <Compile Include="Models\Register.cs" />
     <Compile Include="Models\Unit.cs" />
-    <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -284,21 +283,11 @@
     <Content Include="Views\Categories\Details.cshtml" />
     <Content Include="Views\Categories\Edit.cshtml" />
     <Content Include="Views\Categories\Index.cshtml" />
-    <Content Include="Views\ProductBrands\Create.cshtml" />
-    <Content Include="Views\ProductBrands\Delete.cshtml" />
-    <Content Include="Views\ProductBrands\Details.cshtml" />
-    <Content Include="Views\ProductBrands\Edit.cshtml" />
-    <Content Include="Views\ProductBrands\Index.cshtml" />
     <Content Include="Views\Orders\Create.cshtml" />
     <Content Include="Views\Orders\Delete.cshtml" />
     <Content Include="Views\Orders\Details.cshtml" />
     <Content Include="Views\Orders\Edit.cshtml" />
     <Content Include="Views\Orders\Index.cshtml" />
-    <Content Include="Views\ProductUnits\Create.cshtml" />
-    <Content Include="Views\ProductUnits\Delete.cshtml" />
-    <Content Include="Views\ProductUnits\Details.cshtml" />
-    <Content Include="Views\ProductUnits\Edit.cshtml" />
-    <Content Include="Views\ProductUnits\Index.cshtml" />
     <Content Include="Views\Units\Create.cshtml" />
     <Content Include="Views\Units\Delete.cshtml" />
     <Content Include="Views\Units\Details.cshtml" />
