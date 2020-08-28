@@ -252,6 +252,10 @@
     <Compile Include="Migrations\202008261527234_newlogin.designer.cs">
       <DependentUpon>202008261527234_newlogin.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202008282036456_removeUsersModel.cs" />
+    <Compile Include="Migrations\202008282036456_removeUsersModel.designer.cs">
+      <DependentUpon>202008282036456_removeUsersModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Brand.cs" />
     <Compile Include="Models\Category.cs" />
@@ -264,7 +268,6 @@
     <Compile Include="Models\ProductUnit.cs" />
     <Compile Include="Models\Register.cs" />
     <Compile Include="Models\Unit.cs" />
-    <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -347,6 +350,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202008261527234_newlogin.resx">
       <DependentUpon>202008261527234_newlogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202008282036456_removeUsersModel.resx">
+      <DependentUpon>202008282036456_removeUsersModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
