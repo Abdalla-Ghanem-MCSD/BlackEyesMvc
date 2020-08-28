@@ -1,21 +1,13 @@
-﻿using BlackEyesMvc.Migrations;
-using BlackEyesMvc.Models;
+﻿using BlackEyesMvc.Models;
 using System;
-using System.Collections.Generic;
-using System.Data.Entity.Infrastructure;
 using System.Linq;
-using System.Web;
-using System.Web.ModelBinding;
+using System.Threading;
 using System.Web.Mvc;
-using Login = BlackEyesMvc.Migrations.Login;
-
 namespace BlackEyesMvc.Controllers
 {
     public class HomeController : Controller
     {
         // GET: Home
-
-
         private DbContainer db = new DbContainer();
         public ActionResult Dashboard()
         {
@@ -38,31 +30,38 @@ namespace BlackEyesMvc.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (!db.register.Any(r => r.UserName == register.UserName))
+                try
                 {
-
+                    Register registerInDb = db.register.Where(r => r.UserName == register.UserName).FirstOrDefault();
+                    if (registerInDb != null)
+                    {
+                        ViewBag.SuccsessMessage = "UserName Is Ready Exist";
+                        //ModelState.AddModelError("Error", "UserName Is Ready Exist");
+                        return View();
+                    }
                     db.register.Add(register);
                     db.SaveChanges();
-                    ViewBag.SuccsessMessage = "Register Succsess";
                     ModelState.Clear();
-                    return View();
+                    ViewBag.SuccsessMessage = "Registration Succsess";
 
+                    return RedirectToAction("login", new { message = "Registration Succsess, please login" });
                 }
-                else
+                catch (Exception ex)
                 {
-                    ModelState.AddModelError("Error", "Email Is Ready Exist");
-                    return View();
+                    ModelState.AddModelError("Error", ex);
+                    throw;
                 }
-                
             }
-     
-            return View();
-    }
+            else
+            {
+                ModelState.AddModelError("Error", "Please Insert UserName - Password");
+                return View();
+            }
+        }
 
-    
-        [HttpGet]
-        public ActionResult Login()
+        public ActionResult Login(string? message)
         {
+            ViewBag.successMessage = message;
             return View();
         }
         [HttpPost]
@@ -70,13 +69,11 @@ namespace BlackEyesMvc.Controllers
         {
             if (ModelState.IsValid)
             {
-                var validatUser = db.register.Where(r => r.UserName == login.UserName && r.Password == login.Password).FirstOrDefault();
-                if (validatUser != null)
+                Register validatUser = db.register.Where(r => r.UserName == login.UserName && r.Password == login.Password).FirstOrDefault();
+                if (validatUser == null)
                 //if (db.register.Where(r => r.UserName == login.UserName && r.Password == login.Password).FirstOrDefault() == null) 
                 {
-                  ModelState.AddModelError("Error", "User Name Or Password Not Match");
-
-                    return View();
+                    ModelState.AddModelError("Error", "User Name Or Password Not Match");
                 }
                 else
                 {
@@ -86,14 +83,14 @@ namespace BlackEyesMvc.Controllers
             }
             return View();
 
-       
+
         }
         public ActionResult Logout()
         {
-            Session.Abandon(); 
+            Session.Abandon();
             return View("Login");
         }
     }
-   
+
 }
-    
+
