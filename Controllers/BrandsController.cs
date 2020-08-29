@@ -106,10 +106,28 @@ namespace BlackEyesMvc.Controllers
             return View();
         }
 
+
+        // GET: Categories/Delete/5
+        public async Task<ActionResult> Delete(int? id)
+        {
+            if (id == null)
+            {
+            
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Brand brand = await db.brands.FindAsync(id);
+            if (brand == null)
+            {
+                return HttpNotFound();
+            }
+            return View(brand);
+        }
         // POST: Brands/Delete/5
-        [HttpPost]
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
         public ActionResult Delete(int id)
         {
+
             Brand brand = db.brands.Find(id);
             db.brands.Remove(brand);
             db.SaveChanges();

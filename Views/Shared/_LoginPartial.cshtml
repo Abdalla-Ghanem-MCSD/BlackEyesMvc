@@ -2,6 +2,7 @@
 {
     <ul class="nav navbar-nav navbar-right">
         <li>
+
             @Html.ActionLink("Register", "Register", "Home", null, null)
         </li>
         <li>
@@ -13,7 +14,9 @@ else
 {
 <ul class="nav navbar-nav navbar-right">
     <li>
+        <button>
         @Html.ActionLink("Hello " + Session["UserName"] , "Dashboard", "Home", null, null)
+            </button>
     </li>
     <li>
         @Html.ActionLink("Logout", "Logout", "Home", null, null)
