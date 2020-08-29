@@ -25,6 +25,7 @@ namespace BlackEyesMvc.Models
 
         public ICollection<ProductUnit> ProductUnits { get; set; }
 
-        public ICollection<ProductBrand> ProductBrands { get; set; }
+        public int brandId { get; set; }
+        public ICollection<Brand> brands { get; set; }
     }
 }

@@ -218,12 +218,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\BrandsController.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\OrdersController.cs" />
-    <Compile Include="Controllers\ProductBrandsController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
-    <Compile Include="Controllers\ProductUnitsController.cs" />
     <Compile Include="Controllers\UnitsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -256,6 +255,18 @@
     <Compile Include="Migrations\202008282036456_removeUsersModel.designer.cs">
       <DependentUpon>202008282036456_removeUsersModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202008290410444_removebrand.cs" />
+    <Compile Include="Migrations\202008290410444_removebrand.designer.cs">
+      <DependentUpon>202008290410444_removebrand.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202008290416424_changePhotoUrl.cs" />
+    <Compile Include="Migrations\202008290416424_changePhotoUrl.designer.cs">
+      <DependentUpon>202008290416424_changePhotoUrl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202008290440295_editBrand.cs" />
+    <Compile Include="Migrations\202008290440295_editBrand.designer.cs">
+      <DependentUpon>202008290440295_editBrand.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Brand.cs" />
     <Compile Include="Models\Category.cs" />
@@ -264,7 +275,6 @@
     <Compile Include="Models\Login.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\Product.cs" />
-    <Compile Include="Models\ProductBrand.cs" />
     <Compile Include="Models\ProductUnit.cs" />
     <Compile Include="Models\Register.cs" />
     <Compile Include="Models\Unit.cs" />
@@ -312,6 +322,11 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="Views\Brands\Create.cshtml" />
+    <Content Include="Views\Brands\Delete.cshtml" />
+    <Content Include="Views\Brands\Details.cshtml" />
+    <Content Include="Views\Brands\Edit.cshtml" />
+    <Content Include="Views\Brands\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -321,6 +336,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="IMG\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202008100052243_InitialModel.resx">
@@ -343,6 +359,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202008282036456_removeUsersModel.resx">
       <DependentUpon>202008282036456_removeUsersModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202008290410444_removebrand.resx">
+      <DependentUpon>202008290410444_removebrand.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202008290416424_changePhotoUrl.resx">
+      <DependentUpon>202008290416424_changePhotoUrl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202008290440295_editBrand.resx">
+      <DependentUpon>202008290440295_editBrand.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
