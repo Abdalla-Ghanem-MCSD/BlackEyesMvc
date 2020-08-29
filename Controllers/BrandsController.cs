@@ -44,17 +44,19 @@ namespace BlackEyesMvc.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(Brand brand,HttpPostedFileBase file)
+        public ActionResult Create(string brandName, HttpPostedFileBase file)
         {
-            if (ModelState.IsValid)
+            Brand brand = new Brand();
+            if (brandName != null)
             {
                 if (file != null)
                 {
                     string ImagePath = "~/IMG/" + file.FileName;
                     file.SaveAs(HttpContext.Server.MapPath(ImagePath));
 
-                    brand.BrandName = file.FileName;
-                    brand.PhotoUrl = ImagePath;
+                    brand.BrandName = brandName;
+                    string Actualpath = ImagePath.Substring(1);
+                    brand.PhotoUrl = Actualpath;
                 }
                 db.brands.Add(brand);
                 db.SaveChanges();
@@ -64,13 +66,13 @@ namespace BlackEyesMvc.Controllers
         }
 
         // GET: Brands/Edit/5
-        public async Task<ActionResult> Edit(int? id)
+        public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Brand brand = await db.brands.FindAsync(id);
+            Brand brand = db.brands.Find(id);
             if (brand == null)
             {
                 return HttpNotFound();
@@ -78,45 +80,39 @@ namespace BlackEyesMvc.Controllers
             return View(brand);
         }
 
-        // POST: Brands/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,BrandName,Photo,productId")] Brand brand)
+        public ActionResult Edit(int id, string brandName, HttpPostedFileBase file)
         {
-            if (ModelState.IsValid)
+            Brand brand = db.brands.Find(id);
+            if (brand != null)
             {
-                db.Entry(brand).State = EntityState.Modified;
-                await db.SaveChangesAsync();
-                return RedirectToAction("Index");
-            }
-            return View(brand);
-        }
+                if (brandName != null)
+                {
+                    if (file != null)
+                    {
+                        string ImagePath = "~/IMG/" + file.FileName;
+                        file.SaveAs(HttpContext.Server.MapPath(ImagePath));
 
-        // GET: Brands/Delete/5
-        public async Task<ActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                        brand.BrandName = brandName;
+                        string Actualpath = ImagePath.Substring(1);
+                        brand.PhotoUrl = Actualpath;
+                    }
+                    db.Entry(brand).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
             }
-            Brand brand = await db.brands.FindAsync(id);
-            if (brand == null)
-            {
-                return HttpNotFound();
-            }
-            return View(brand);
+            
+            return View();
         }
 
         // POST: Brands/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteConfirmed(int id)
+        [HttpPost]
+        public ActionResult Delete(int id)
         {
-            Brand brand = await db.brands.FindAsync(id);
+            Brand brand = db.brands.Find(id);
             db.brands.Remove(brand);
-            await db.SaveChangesAsync();
+            db.SaveChanges();
             return RedirectToAction("Index");
         }
 

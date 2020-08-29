@@ -6,7 +6,7 @@ namespace BlackEyesMvc.Models
     public class Brand
     {
         public int Id { get; set; }
-       [Required]
+        [Required]
         public string BrandName { get; set; }
         public string PhotoUrl { get; set; }
      
