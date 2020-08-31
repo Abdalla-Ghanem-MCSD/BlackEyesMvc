@@ -11,7 +11,7 @@ namespace BlackEyesMvc.Models
     public class Login
     {
         public int Id { get; set; }
-        [DisplayName("Enter Your Email")]
+        [DisplayName("Enter Your User-Name")]
         [Required(ErrorMessage = "Please Input User_Name")]
         public string UserName { get; set; }
         [Required(ErrorMessage = "Please Input Password")]
