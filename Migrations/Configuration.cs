@@ -9,8 +9,8 @@
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = true;
-           
+            AutomaticMigrationsEnabled = false;
+
         }
 
         protected override void Seed(BlackEyesMvc.Models.DbContainer context)
